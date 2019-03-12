@@ -48,6 +48,9 @@ class Book(models.Model):
         ordering = ['-date_added']
 
     # Methods for the model
+    def get_short_description(self):
+        return f'{{ self.description|truncatewords:15 }}'
+
     def get_absolute_url(self):
         """Returns the url to access particular instance of Book model"""
         return reverse("book_detail", args=[str(self.id)])
