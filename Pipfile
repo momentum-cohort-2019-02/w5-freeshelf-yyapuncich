@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 django = "*"
 prospector = "*"
+django-debug-toolbar = "*"
+django-registration-redux = "*"
 
 [requires]
 python_version = "3.7"

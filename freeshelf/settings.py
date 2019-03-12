@@ -31,13 +31,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # third party apps that must come first
+    'registration',
+    # Builit in django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core.apps.CoreConfig',
+    # third party apps
+    'debug_toolbar',
+    # my core app
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'freeshelf.urls'
@@ -119,3 +126,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+
+# Registration
+ACCOUNT_ACTIVATION_DAYS = 7
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

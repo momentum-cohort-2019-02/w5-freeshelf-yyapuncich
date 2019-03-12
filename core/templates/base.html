@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block title %}<title>Free Shelf</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="core/static/css/freeshelf-style.css">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <main class="main-container">
+        <div class="row">
+            <aside class="sidebar">
+                {% block sidebar %}
+                <ul class="sidebar-nav">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="">All EBooks</a></li>
+                    <li><a href="">All Authors</a></li>
+                </ul>
+                {% endblock %}
+            </aside>
+            <section class="pages-content">{% block content %}{% endblock %}</section>
+        </div>
+    </main>
+    
+</body>
+</html>
