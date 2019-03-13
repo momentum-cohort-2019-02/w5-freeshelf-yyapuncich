@@ -14,27 +14,7 @@ class Author(models.Model):
 class Category(models.Model):
     """Catagories of different online books available"""
     
-    SCI_FI = 'SCF'
-    PROG = 'PRG'
-    FEM = 'FEM'
-    POL = 'POL'
-    HUM = 'HUM'
-    HOR = 'HOR'
-
-    CATEGORY_CHOICES = (
-        (SCI_FI, 'Science Fiction'),
-        (PROG, 'Programming'),
-        (FEM, 'Feminism'),
-        (POL, 'Politics'),
-        (HUM, 'Humor'),
-        (HOR, 'Horror'),
-    )
-    
-    category = models.CharField(
-        max_length=10,
-        choices=CATEGORY_CHOICES,
-        default=None,
-    )
+    category = models.CharField(max_length=10,default=None,)
 
     def __str__(self):
         return self.category
@@ -43,12 +23,12 @@ class Book(models.Model):
     """All the books available on the free shelf"""
     # Fields
     title = models.CharField(max_length=50)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     category = models.ManyToManyField(Category)
     description = models.CharField(max_length=100)
     book_url = models.URLField(max_length=200)
-    date_added = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(unique=True)
+    date_added = models.DateField()
+    slug = models.SlugField()
 
     class Meta:
         ordering = ['-date_added']
