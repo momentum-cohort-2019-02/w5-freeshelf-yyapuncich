@@ -2,18 +2,30 @@
 * {
     font-family: Helvetica, Arial, sans-serif;
     border: 1px dashed grey;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header {
+    padding: 2rem 0 3rem 2rem;
+    font-size: 3rem;
 }
 
 .main-container {
-
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
 }
 
 .sidebar {
-
+    display: flex;
+    flex-wrap: initial;
+    padding: 2rem;
 }
 
 .sidebar-nav {
-
+    display: flex;
+    list-style: none;
 }
 
 .pages-content {
@@ -21,7 +33,7 @@
 }
 
 .index-header {
-
+    font-size: 2rem;
 }
 
 .index-intro {

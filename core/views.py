@@ -10,6 +10,7 @@ def index(request):
     num_books = Book.objects.all().count()
     num_authors = Author.objects.count()
     
+    
     # Define context here
     context = {
         'num_books': num_books,
@@ -21,4 +22,7 @@ def index(request):
 def book_detail_view(request, slug):
     book = get_object_or_404(Book, slug=slug)
     return render(request, "book_detail.html", {"book": book})
-    
+
+def category_detail_view(request):
+    category = get_object_or_404(Category)
+    return render(request, "category_detail.html", {"category": category})

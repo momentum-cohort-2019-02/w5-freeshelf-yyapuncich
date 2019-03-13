@@ -11,15 +11,17 @@
 </head>
 
 <body>
+    <h1 class="main-header"><a href="{% url 'index' %}">The Freeshelf</a></h1>
     <main class="main-container">
         <div class="row">
             <aside class="sidebar">
                 {% block sidebar %}
+                <p>Books by Category: </p>
+                {% for category in book.category.all %}
                 <ul class="sidebar-nav">
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="">All EBooks</a></li>
-                    <li><a href="">All Authors</a></li>
+                    <li><a href="{% url 'category-detail' %)"></a></li>
                 </ul>
+                {% endfor %}
                 {% endblock %}
             </aside>
             <section class="pages-content">{% block content %}{% endblock %}</section>

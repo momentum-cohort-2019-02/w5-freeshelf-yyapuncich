@@ -37,6 +37,10 @@ class Book(models.Model):
     def get_short_description(self):
         return f'{{ self.description|truncatewords:15 }}'
 
+    # def get_string_category(self):
+    #     """Returns string representation of category for specific book"""
+    #     return self.category
+
     def get_absolute_url(self):
         """Returns the url to access particular instance of Book model"""
         return reverse("book_detail", args=[str(self.id)])
@@ -45,7 +49,6 @@ class Book(models.Model):
         """Setting slug field to auto-generate and make unique each time even if title is same title as another book-- it will add int at end if needed"""
         if self.slug:
             return
-
         base_slug = slugify(self.title)
         # Local variable slug below
         slug = base_slug
