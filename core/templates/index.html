@@ -2,12 +2,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="index-header">Welcome to the Freeshelf</h1>
-<p class="index-intro">This is your place to browse free (mostly) online books for your programming development and more.</p>
-{% for books in book.objects.all %}
+{% for book in books %}
     <ul>
-        <li class="book-item"><a href="{url 'book-detail' book.pk %}">{{ book.title }}</a>{{ book.description|truncatewords:20 }}</li>
+        <li class="book-item">
+            <span class="book-list-title-section">
+            <span class="book-title"><a href="{url 'book-detail' slug=book.slug %}">{{ book.title }}</a></span>
+            {% if book.author %}
+                <span class="by-book-author">- by {{ book.author }}</span>
+            {% endif %}
+        </span>
+            <p class="book-description">{{ book.description|truncatewords:60 }}</p>
+        </li>
     </ul>
-
+{% endfor %}
 
 {% endblock %}

@@ -3,24 +3,32 @@
     font-family: Helvetica, Arial, sans-serif;
     border: 1px dashed grey;
     margin: 0;
-    padding: 0;
 }
 
 .main-header {
-    padding: 2rem 0 3rem 2rem;
+    padding: 3rem 0 3rem 3rem;
     font-size: 3rem;
+    background-color: linen;
+    border-bottom: 2px solid lightseagreen;
+}
+
+.index-header {
+    font-size: 1.5rem;
+    padding: 1rem 0 1rem 3rem;
+}
+
+.index-intro {
+    padding: 0 0 0 3rem;
 }
 
 .main-container {
-    display: flex;
-    flex-wrap: wrap;
     max-width: 1200px;
 }
 
 .sidebar {
     display: flex;
     flex-wrap: initial;
-    padding: 2rem;
+    padding: 2rem 0 2rem 3rem;
 }
 
 .sidebar-nav {
@@ -29,15 +37,27 @@
 }
 
 .pages-content {
-
+    padding: 0 0 0 3;
 }
 
-.index-header {
-    font-size: 2rem;
+.book-list-title-section {
 }
 
-.index-intro {
+.book-item {
+    padding: 2rem 0 2rem 0;
+    list-style: none;
+}
 
+.book-title {
+    display: inline;
+}
+
+.by-book-author {
+    display: inline;
+}
+
+.book-description {
+    padding: 2rem 0 0 0;
 }
 
 .footer {
