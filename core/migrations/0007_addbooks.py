@@ -33,7 +33,7 @@ def get_book_csv(apps, schema_editor):
             book = Book(
                 title=row['title'],
                 author=author,
-                description=row['description'],
+                description=row['description'][:100],
                 book_url=row['book_url'],
                 date_added=row['date_added'],
             )
