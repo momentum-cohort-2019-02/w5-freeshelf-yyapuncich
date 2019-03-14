@@ -26,14 +26,14 @@ def get_book_csv(apps, schema_editor):
             author.save()
 
             category, _ = Category.objects.get_or_create(
-                category=row['category'],
+                category=row['category'][:100],
             )
             category.save()
 
             book = Book(
                 title=row['title'],
                 author=author,
-                description=row['description'][:100],
+                description=row['description'][:300],
                 book_url=row['book_url'],
                 date_added=row['date_added'],
             )
