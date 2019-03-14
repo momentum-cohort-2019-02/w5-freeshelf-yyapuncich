@@ -40,8 +40,8 @@ def get_book_csv(apps, schema_editor):
             # Needed to slugify my title here because I was getting an error:
             # 'django.db.utils.IntegrityError: UNIQUE constraint failed: core_book.slug'
             book.slug = slugify(book.title)
-            book.category.add(category)
             book.save()
+            book.category.add(category)
 
 class Migration(migrations.Migration):
 
