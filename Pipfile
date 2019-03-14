@@ -10,6 +10,8 @@ django = "*"
 prospector = "*"
 django-debug-toolbar = "*"
 django-registration-redux = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"

@@ -32,4 +32,4 @@ def book_detail_view(request, slug):
 
 def category_detail_view(request):
     category = get_object_or_404(Category)
-    return render(request, "category_detail.html", {"category": category})
+    return render(request, "category-detail.html", {"category": category})
