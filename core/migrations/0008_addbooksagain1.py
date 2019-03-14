@@ -12,6 +12,7 @@ def get_book_csv(apps, schema_editor):
     Category = apps.get_model('core', 'Category')
     datapath = os.path.join(settings.BASE_DIR, 'initial_data')
     datafile = os.path.join(datapath, 'Freeshelf_CSV.csv')
+    
     with open(datafile) as file:
         reader = csv.DictReader(file)
         for row in reader:
@@ -26,27 +27,27 @@ def get_book_csv(apps, schema_editor):
             author.save()
 
             category, _ = Category.objects.get_or_create(
-                category=row['category'][:200],
+                category=row['category'],
             )
             category.save()
 
             book = Book(
                 title=row['title'],
                 author=author,
-                description=row['description'][:1000],
+                description=row['description'],
                 book_url=row['book_url'],
                 date_added=row['date_added'],
             )
             # Needed to slugify my title here because I was getting an error:
             # 'django.db.utils.IntegrityError: UNIQUE constraint failed: core_book.slug'
-            book.slug = slugify(book.title)
+            book.slug = slugify(book.title)[:49]
             book.save()
             book.category.add(category)
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0006_auto_20190313_1219'),
+        ('core', '0007_auto_20190314_1600'),
     ]
 
     operations = [

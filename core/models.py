@@ -6,7 +6,7 @@ from django.utils.text import slugify
 # Create your models here.
 class Author(models.Model):
     """Author for the online books"""
-    name = models.CharField(max_length=50, null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -14,7 +14,7 @@ class Author(models.Model):
 class Category(models.Model):
     """Catagories of different online books available"""
     
-    category = models.CharField(max_length=100,default=None,)
+    category = models.CharField(max_length=100, default=None,)
 
     def __str__(self):
         return self.category
@@ -22,11 +22,11 @@ class Category(models.Model):
 class Book(models.Model):
     """All the books available on the free shelf"""
     # Fields
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=200)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
     category = models.ManyToManyField(Category)
     description = models.TextField()
-    book_url = models.URLField(max_length=200)
+    book_url = models.URLField()
     date_added = models.DateField()
     slug = models.SlugField()
 
