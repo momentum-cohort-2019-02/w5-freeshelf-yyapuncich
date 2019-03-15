@@ -32,12 +32,14 @@
         <div class="row">
             <aside class="sidebar">
                 {% block sidebar %}
+                {% if categories %}
                 <p>Books by Category: </p>
-                {% for category in book.category.all %}
+                {% for category in categories.all %}
                 <ul class="sidebar-nav">
-                    <li><a href="{% url 'category-detail' %)">{{ category.category }}</a></li>
+                    <li><a href="{{ category.get_absolut_url }}">{{ category.name }}</a></li>
                 </ul>
                 {% endfor %}
+                {% endif %}
                 {% endblock %}
             </aside>
             <section class="pages-content">{% block content %}{% endblock %}</section>

@@ -5,12 +5,12 @@ from core.models import Book, Author, Category, Favorite
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'description', 'book_url',)
+    list_display = ('title', 'author', 'description', 'book_url', 'slug')
     exclude = ('slug',)
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category',)
+    list_display = ('name',)
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):

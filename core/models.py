@@ -17,18 +17,25 @@ class Author(models.Model):
 
 class Category(models.Model):
     """Catagories of different online books available"""
-    
-    category = models.CharField(max_length=100, default=None,)
+    name = models.CharField(max_length=100, default=None,)
+
+    # def set_slug_category(self):
+    #     return str(slugify(self.name))
+
+    # slug = set_slug_category()
+
+    def get_absolute_url(self):
+        return reverse('category-detail', args=[(self.slug)])
 
     def __str__(self):
-        return self.category
+        return self.name
     
 class Book(models.Model):
     """All the books available on the free shelf"""
     # Fields
     title = models.CharField(max_length=200)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
-    category = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, related_name="books")
     description = models.TextField()
     book_url = models.URLField()
     date_added = models.DateField()
@@ -45,9 +52,6 @@ class Book(models.Model):
     #     """Returns string representation of category for specific book"""
     #     return self.category
 
-    def get_absolute_url(self):
-        """Returns the url to access particular instance of Book model"""
-        return reverse("book_detail", args=[str(self.id)])
     # From lecture 3-12 on Slugs...
     def set_slug(self):
         """Setting slug field to auto-generate and make unique each time even if title is same title as another book-- it will add int at end if needed"""
@@ -68,6 +72,10 @@ class Book(models.Model):
         """Need to change default save so that slug field is hidden in admin"""
         self.set_slug()
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        """Returns the url to access particular instance of Book model"""
+        return reverse('book-detail', args=[str(self.slug)])
     
     # String representation of model
     def __str__(self):
