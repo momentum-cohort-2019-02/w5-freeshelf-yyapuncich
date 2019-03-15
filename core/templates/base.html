@@ -11,7 +11,21 @@
 </head>
 
 <body>
-    <h1 class="main-header"><a href="{% url 'index' %}">The Freeshelf</a></h1>
+    <header class="main-header">
+        <span class="header-text">
+            <h1><a href="{% url 'index' %}">The Freeshelf</a></h1>
+            <nav class="registration">
+                <ul class="registration-list">
+                {% if request.user.is_authenticated %}
+                    <li>{{ user.username }}</li>
+                    <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'auth_login' %}">Register | Login</a></li>
+                {% endif %}
+                </ul>
+            </nav>
+        </span>
+    </header>
     <main class="main-container">
         <h2 class="index-header">Welcome to the Freeshelf</h2>
         <p class="index-intro">This is your place to browse (mostly) free online books for your programming development and more.</p>

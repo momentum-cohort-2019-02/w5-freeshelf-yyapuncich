@@ -6,7 +6,7 @@
     <ul>
         <li class="book-item">
             <span class="book-list-title-section">
-            <span class="book-title"><a href="{url 'book-detail' %}">{{ book.title }}</a></span>
+            <span class="book-title"><a href="{url 'book-detail' book.slug %}">{{ book.title }}</a></span>
             {% if book.author %}
                 <span class="by-book-author">- by {{ book.author }}</span>
             {% endif %}

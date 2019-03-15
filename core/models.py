@@ -2,8 +2,12 @@ from django.db import models
 from django.db.models import DateTimeField
 from django.urls import reverse
 from django.utils.text import slugify
+from django.contrib.auth import get_user_model
 
 # Create your models here.
+
+User = get_user_model()
+
 class Author(models.Model):
     """Author for the online books"""
     name = models.CharField(max_length=100, null=True, blank=True)
