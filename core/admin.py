@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Book, Author, Category, Favorite
+from core.models import Book, Author, Category
 
 # Register your models here.
 
@@ -15,7 +15,3 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
-@admin.register(Favorite)
-class FavoriteAdmin(admin.ModelAdmin):
-    pass

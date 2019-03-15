@@ -40,6 +40,7 @@ class Book(models.Model):
     book_url = models.URLField()
     date_added = models.DateField()
     slug = models.SlugField()
+    favorited_by = models.ManyToManyField(to=User, related_name="favorite_books")
 
     class Meta:
         ordering = ['-date_added']
@@ -81,11 +82,11 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
-class Favorite(models.Model):
-    """Model representing User choices for books they want to read"""
+# class Favorite(models.Model):
+#     """Model representing User choices for books they want to read"""
 
-    FAV_STATUS = (
-        ('TR', 'To Read'),
-        ('RD', 'Reading'),
-        ('DN', 'Done Read'),
-    )
+#     FAV_STATUS = (
+#         ('TR', 'To Read'),
+#         ('RD', 'Reading'),
+#         ('DN', 'Done Read'),
+#     )

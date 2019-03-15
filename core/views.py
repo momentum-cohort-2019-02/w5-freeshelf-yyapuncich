@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from core.models import Book, Author, Category, Favorite
+from core.models import Book, Author, Category
 from django.core import paginator
 
 # Create your views here.
