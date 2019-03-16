@@ -10,7 +10,8 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'books')
+    list_display = ('name', 'books') 
+    # Fix display here, books shows up funny on Admin site
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):

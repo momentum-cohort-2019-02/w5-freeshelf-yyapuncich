@@ -18,11 +18,22 @@ class Author(models.Model):
 class Category(models.Model):
     """Catagories of different online books available"""
     name = models.CharField(max_length=100, default=None,)
+    slug = models.SlugField()
+    # Using set slug method from Books model
+    def set_slug(self):
+        """Setting slug field to auto-generate and make unique each time even if title is same title as another book-- it will add int at end if needed"""
+        if self.slug:
+            return
+        base_slug = slugify(self.name)
+        # Local variable slug below
+        slug = base_slug
+        n = 0
+        # While the field slug is already in DB and equal to new local slug, run this loop, else return the slug name without an int at end
+        while Category.objects.filter(slug=slug).count():
+            n += 1
+            slug = base_slug + "-" + str(n)
 
-    def set_slug_category(self):
-        return str(slugify(self.name))
-
-    slug = self.set_slug_category()
+        self.slug = slug
 
     def get_absolute_url(self):
         return reverse('category-detail', args=[(self.slug)])
@@ -34,7 +45,7 @@ class Book(models.Model):
     """All the books available on the free shelf"""
     # Fields
     title = models.CharField(max_length=200)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books', null=True, blank=True)
     categories = models.ManyToManyField(Category, related_name="books")
     description = models.TextField()
     book_url = models.URLField()
@@ -47,7 +58,7 @@ class Book(models.Model):
 
     # Methods for the model
     def get_short_description(self):
-        return f'{{ self.description|truncatewords:15 }}'
+        return f'{{ self.description|truncatewords:25 }}'
 
     # def get_string_category(self):
     #     """Returns string representation of category for specific book"""
