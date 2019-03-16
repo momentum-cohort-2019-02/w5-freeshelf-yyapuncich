@@ -27,8 +27,10 @@ def index(request):
 def book_detail_view(request, slug):
     """Book detail page to show info for specific ebook"""
     books = get_object_or_404(Book, slug=slug)
+    categories = Category.objects.all()
     return render(request, "book-detail.html", {
         "books": books,
+        "categories": categories,
         })
 
 def category_detail_view(request, slug):
