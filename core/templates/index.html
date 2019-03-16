@@ -5,10 +5,17 @@
 <aside class="sidebar">
     {% block sidebar %}
     {% if categories %}
-        <p>Books by Category: </p>
+        <p class="books-by-category">Books by Category: </p>
         {% for category in categories.all %}
             <ul class="sidebar-nav">
-                <li><a href="{{ category.get_absolut_url }}">{{ category.name }}</a></li>
+                <li class="category-list-item">
+                {% if not forloop.last %}
+                <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                <li class="pipe">|</li>
+                {% else %} 
+                <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                {% endif %}
+                </li>
             </ul>
         {% endfor %}
     {% endif %}

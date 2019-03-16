@@ -1,7 +1,7 @@
 
 * {
     font-family: Helvetica, Arial, sans-serif;
-    border: 1px dashed grey;
+    /* border: 1px dashed grey; */
     margin: 0;
     padding: 0;
 }
@@ -63,12 +63,23 @@ a:visited {
 
 .sidebar {
     display: flex;
+    flex-wrap: wrap;
     padding: 2rem 0 2rem 0;
 }
 
 .sidebar-nav {
     display: flex;
     list-style: none;
+}
+
+.books-by-category {
+    padding: .25rem .25rem .25rem 0;
+}
+
+.category-list-item, .pipe {
+    display: inline;
+    padding: .25rem;
+    justify-content: space-evenly;
 }
 
 .pages-content {
