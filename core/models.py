@@ -19,10 +19,10 @@ class Category(models.Model):
     """Catagories of different online books available"""
     name = models.CharField(max_length=100, default=None,)
 
-    # def set_slug_category(self):
-    #     return str(slugify(self.name))
+    def set_slug_category(self):
+        return str(slugify(self.name))
 
-    # slug = set_slug_category()
+    slug = self.set_slug_category()
 
     def get_absolute_url(self):
         return reverse('category-detail', args=[(self.slug)])
@@ -40,7 +40,7 @@ class Book(models.Model):
     book_url = models.URLField()
     date_added = models.DateField()
     slug = models.SlugField()
-    favorited_by = models.ManyToManyField(to=User, related_name="favorite_books")
+    favorited_by = models.ManyToManyField(to=User, related_name="favorite_books", blank=True)
 
     class Meta:
         ordering = ['-date_added']
