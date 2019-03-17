@@ -3,5 +3,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<aside class="sidebar">
+{% for category in books.categories.all %}
+    <ul class="sidebar-nav">
+        <li class="category-list-item">
+        {% if not forloop.last %}
+            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            <li class="pipe">|</li>
+        {% else %} 
+            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+        </li>    
+    </ul>
+{% endif %}
+{% endfor %}
+</aside>
+{% if category.books %}
+    {% for book in books %}
+        <ul>
+            <li class="book-item">
+                <span class="book-list-title-section">
+                <span class="book-title"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></span>
+                {% if book.author %}
+                    <span class="by-book-author">- by {{ book.author }}</span>
+                {% endif %}
+            </span>
+                <p class="book-description">{{ book.description }}</p>
+            </li>
+        </ul>
+    {% endfor %}
+{% else %}
+<p>Sorry! No books for that category yet...</p>
+{% endif %}
 {% endblock %}

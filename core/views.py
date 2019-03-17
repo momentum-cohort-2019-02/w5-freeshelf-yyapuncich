@@ -36,7 +36,9 @@ def book_detail_view(request, slug):
 def category_detail_view(request, slug):
     """View function for Categorie page to sort books by category"""
     category = get_object_or_404(Category, slug=slug)
-    books = Book.objects.filter()
+    # Used a Field lookup on my books to get only books in the category on that page
+    # https://docs.djangoproject.com/en/2.1/ref/models/querysets/#field-lookups
+    books = Book.objects.filter(categories__exact=category)
     return render(request, "category-detail.html", {
         "category": category,
         "books": books,
