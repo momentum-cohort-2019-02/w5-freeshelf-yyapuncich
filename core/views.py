@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from core.models import Book, Author, Category
+from django.shortcuts import render, get_object_or_404, redirect
+from core.models import Book, Author, Category, User
 from django.core import paginator
+from django.contrib.auth.decorators import login_required
+from random import choice
 
 # Create your views here.
 
@@ -43,3 +45,20 @@ def category_detail_view(request, slug):
         "category": category,
         "books": books,
         })
+
+@login_required
+def user_favorite_view(request):
+    """View for user favorites page"""
+    books = Book.objects.all()
+    return render(request, "favorite.html", {
+        "books": books,
+    })
+
+
+# Tried to use redirect in function like
+# https://docs.djangoproject.com/en/2.1/topics/http/shortcuts/#redirect
+# def profile_redirect_view(request):
+#     """View for redirecting accounts/profile to favorite view"""
+#     # profile_urls = ['/favorite/', '/profile/']
+#     # profile_url = ['/profile/']
+#     return redirect(to='favorite.html', permanent=True)

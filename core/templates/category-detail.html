@@ -3,20 +3,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<aside class="sidebar">
-{% for category in books.categories.all %}
-    <ul class="sidebar-nav">
-        <li class="category-list-item">
-        {% if not forloop.last %}
-            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-            <li class="pipe">|</li>
-        {% else %} 
-            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-        </li>    
-    </ul>
-{% endif %}
-{% endfor %}
-</aside>
+<h3 class="sidebar">{{ category.name }} Books Available</h3>
 {% if category.books %}
     {% for book in books %}
         <ul>
