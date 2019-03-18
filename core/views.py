@@ -50,8 +50,10 @@ def category_detail_view(request, slug):
 def user_favorite_view(request):
     """View for user favorites page"""
     books = Book.objects.all()
-    return render(request, "favorite.html", {
+    user = User
+    return render(request, 'favorite.html', {
         "books": books,
+        "user": user,
     })
 
 
@@ -60,5 +62,5 @@ def user_favorite_view(request):
 # def profile_redirect_view(request):
 #     """View for redirecting accounts/profile to favorite view"""
 #     # profile_urls = ['/favorite/', '/profile/']
-#     # profile_url = ['/profile/']
+#     profile_url = ['/profile/']
 #     return redirect(to='favorite.html', permanent=True)
